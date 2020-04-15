@@ -1,0 +1,39 @@
+﻿
+@model Vidly.Models.Customer
+
+
+@{
+    /**/
+
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    var className = Model.myCustomer.Count > 0 ? "popular" : null;
+}
+
+
+@* <h2 class="@className">@Model.myMovie.Name>/h2>*@
+
+@if (Model.myCustomer.Count == 0)
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
